@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from "react";
 import DisplayCards from "./components/DisplayCards";
+import uniqid from "uniqid";
 
+
+//import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map(item => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+const images = importAll(require.context('./components/imgs', false, /\.jpg/));
+const keys = Object.keys(images);
+
+
+//array for cards state
+let arr = []
+keys.forEach(element => {
+  arr.push({id:uniqid(), name:images[element]})
+}); 
 
 const App = () => {
   const [score, setScore] = useState(0)
-  const [cards, setOrder] = useState((Array.from(Array(13).keys())))
+  const state = {};
+  const [cards, setOrder] = useState(arr)
   const [usedItems, AddUsedItems] = useState([]);
 
   useEffect(() => {
