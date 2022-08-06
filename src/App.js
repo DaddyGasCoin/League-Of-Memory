@@ -16,19 +16,18 @@ const keys = Object.keys(images);
 //array for cards state
 let arr = []
 keys.forEach(element => {
-  arr.push({id:uniqid(), name:images[element]})
-}); 
+  arr.push({ id: uniqid(), link: images[element], name: element })
+});
 
 const App = () => {
   const [score, setScore] = useState(0)
-  const state = {};
+  // const [cards, setOrder] = useState([{ id: uniqid(), link: images[keys[1]], name: keys[1] }])
   const [cards, setOrder] = useState(arr)
-  const [usedItems, AddUsedItems] = useState([]);
+  const [usedItems, AddUsedItems] = useState([])
 
   useEffect(() => {
 
     randomizeOrder()
-    setOrder([...cards])
   }, [usedItems])
 
   //shuffle cards and change state
@@ -61,8 +60,6 @@ const App = () => {
       <div>{score}</div>
       <DisplayCards cards={cards} handler={validateTurn} />
     </>
-
-
   )
 }
 
