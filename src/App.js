@@ -23,6 +23,7 @@ keys.forEach(element => {
 
 const App = () => {
   const [score, setScore] = useState(0)
+  const [maxScore, setMax] = useState(0)
   const [cards, setOrder] = useState(arr)
   const [usedItems, AddUsedItems] = useState([])
 
@@ -50,6 +51,7 @@ const App = () => {
     const target = event.target.dataset.id;
     if (!usedItems.includes(target)) {
       setScore(score + 1)
+
       usedItems.push(target)
       AddUsedItems([...usedItems])
     }
@@ -59,12 +61,16 @@ const App = () => {
       AddUsedItems([])
     }
 
+    if (maxScore <= score) {
+      setMax(maxScore + 1)
+    }
+
   }
 
   return (
     <>
       <DisplayHeader />
-      <DisplayScores current={score} />
+      <DisplayScores current={score} max={maxScore} />
       <DisplayCards cards={cards} handler={validateTurn} />
     </>
   )
