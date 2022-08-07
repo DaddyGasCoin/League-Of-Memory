@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DisplayCards from "./components/DisplayCards";
 import uniqid from "uniqid";
 import DisplayHeader from "./components/DisplayHeader";
+import DisplayScores from "./components/DisplayScores";
 
 
 //import all images
@@ -26,7 +27,6 @@ const App = () => {
   const [usedItems, AddUsedItems] = useState([])
 
   useEffect(() => {
-
     randomizeOrder()
   }, [usedItems])
 
@@ -50,15 +50,21 @@ const App = () => {
     const target = event.target.dataset.id;
     if (!usedItems.includes(target)) {
       setScore(score + 1)
+      usedItems.push(target)
+      AddUsedItems([...usedItems])
     }
-    usedItems.push(target)
-    AddUsedItems([...usedItems])
+    // reset game
+    else {
+      setScore(0)
+      AddUsedItems([])
+    }
+
   }
 
   return (
     <>
       <DisplayHeader />
-      <div>{score}</div>
+      <DisplayScores current={score} />
       <DisplayCards cards={cards} handler={validateTurn} />
     </>
   )

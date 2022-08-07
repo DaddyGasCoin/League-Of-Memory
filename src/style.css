@@ -57,3 +57,20 @@
     font-weight: 500;
     padding-top: 10px;
 }
+
+.score-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    width: max-content;
+    height: auto;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 500;
+
+}
