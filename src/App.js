@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DisplayCards from "./components/DisplayCards";
 import uniqid from "uniqid";
+import DisplayHeader from "./components/DisplayHeader";
 
 
 //import all images
@@ -21,7 +22,6 @@ keys.forEach(element => {
 
 const App = () => {
   const [score, setScore] = useState(0)
-  // const [cards, setOrder] = useState([{ id: uniqid(), link: images[keys[1]], name: keys[1] }])
   const [cards, setOrder] = useState(arr)
   const [usedItems, AddUsedItems] = useState([])
 
@@ -57,6 +57,7 @@ const App = () => {
 
   return (
     <>
+      <DisplayHeader />
       <div>{score}</div>
       <DisplayCards cards={cards} handler={validateTurn} />
     </>
